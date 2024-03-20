@@ -1,10 +1,10 @@
 import { getCategories } from "@/actions/get-categories";
+import Categories from "@/components/collections/categories";
 import MaxWidth from "@/components/layout/max-width-layout";
 import Padding from "@/components/layout/padding";
-import Categories from "@/components/products/categories";
-import FeaturedProducts from "../components/featured-products";
-import HotCollections from "../components/hot-collections";
-import HeroSlider from "../components/hero-slider";
+import HeroSlider from "./components/hero-slider";
+import FeaturedProducts from "./components/featured-products";
+import HotCollections from "./components/hot-collections";
 
 const Page = async () => {
   const categories = await getCategories();

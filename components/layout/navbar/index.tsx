@@ -12,7 +12,6 @@ import Sidebar from "../sidebar";
 const Navbar = () => {
   const [isSearchBoxOpen, setIsSearchBoxOpen] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
-  const categoryRef = useRef<HTMLDivElement>(null);
   const components = useComponentsStore();
 
   useEffect(() => {
@@ -37,12 +36,12 @@ const Navbar = () => {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [sidebarRef, categoryRef, components.isSidebarOpen]);
+  }, [components]);
 
   return (
-    <nav className=" w-full bg-white overflow-hidden border-b-sm  sticky top-0 z-[100] ">
+    <nav className=" w-full bg-white  border-b-sm  sticky top-0 z-[100] ">
       <MaxWidthLayout>
-        <div className="flex  px-sm sm:px-md md:px-xl items-center gap-sm justify-between ">
+        <div className="flex p-sm  md:px-md  items-center gap-sm justify-between ">
           <div className="flex gap-xs menu-icon  md:hidden">
             <HiOutlineBars3
               className="cursor-pointer text-2xl menu-icon "
@@ -51,18 +50,20 @@ const Navbar = () => {
 
             <CiSearch
               className="cursor-pointer text-2xl"
-              onClick={() => setIsSearchBoxOpen(true)}
+              onClick={() => {
+                setIsSearchBoxOpen(true);
+              }}
             />
           </div>
-          <Logo />
+          <div className="h-12  object-cover">
+            <Logo />
+          </div>
 
-          <div className=" hidden md:flex w-full  justify-center items-center gap-sm">
-            <SearchBox
-              setIsSearchBarOpen={setIsSearchBoxOpen}
-              isSearchBarOpen={isSearchBoxOpen}
-            />
-          </div>
-          <div className="flex gap-xs">
+          <SearchBox
+            setIsSearchBarOpen={setIsSearchBoxOpen}
+            isSearchBoxOpen={isSearchBoxOpen}
+          />
+          <div className="flex  gap-xs">
             <CiUser className="cursor-pointer text-2xl" />
             <CiShoppingCart className="cursor-pointer text-2xl" />
           </div>
